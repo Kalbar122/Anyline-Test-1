@@ -1,38 +1,84 @@
 <!DOCTYPE html>
+<!--
+ Anyline Cordova Plugin
+ indext.html
+
+ Copyright (c) 2016 Anyline GmbH
+ -->
 <html>
-	<head>
-		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-		<script src="js/pgb.js"></script>
-		<script src="cordova.js"></script>
-		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
-		<script src="js/jquery-2.1.4.min.js"></script>
-		<script src="js/jquery.mobile-1.4.5.min.js"></script>
-	</head>
-	<body onload="init()">
-		
-		<!-- My app main page -->
-		<div data-role="page" id="pageone">
-		  <div data-role="header">
-			<h1>GUI</h1>
-		  </div>
-		  <div data-role="main" class="ui-content">
-			<p>Cześć coś tutaj sie zaraz wyświetli:</p>
-			<a href="#details" class="ui-btn ui-btn-inline ui-corner-all ui-shadow" onclick="deviceInfo()">Kliknij mnie!</a>
-		  </div>
-		  <div data-role="footer" data-position="fixed">
-			<h1>(c) Kuba Kalbarczyk</h1>
-		  </div> 
-		</div> 
-		
-		<!-- Mobile device details page -->
-		<div data-role="page" id="details" data-dialog="true">
-			<div data-role="header" data-theme="a">
-				<h1>It's me</h1>
-			</div>
-			<div role="main" class="ui-content">
-				<p id="deviceDetails">Place for device details ...</p>
-			</div>
-		</div>		
-	
-	</body>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1,
+                    width=device-width, height=device-height">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/anyline.css">
+    <title>Anyline Cordova Example</title>
+
+</head>
+
+<body>
+<h1>Anyline Cordova</h1>
+
+<div id="navigation">
+    <details id="details_scan_modes" open>
+        <summary class="summary1">
+            Scan Modes
+        </summary>
+        <h2> Energy </h2>
+        <p>
+            <input type="button" value="Analog Meter" onclick="anyline.energy.scan('ANALOG_METER')"/>
+            <br/>
+            <input type="button" value="Digital Meter" onclick="anyline.energy.scan('DIGITAL_METER')"/>
+            <br/>
+            <input type="button" value="Heat Meter" onclick="anyline.energy.scanHeatMeterWithSegment()"/>
+            <br/>
+            <input type="button" value="Electric Meter" onclick="anyline.energy.scanElectricDigitalSegment()"/>
+            <br/>
+        <hr>
+        <h2>Anyline OCR</h2>
+        <p>
+            <input type="button" value="IBAN" onclick="anyline.ocr.scanIban()"/>
+            <br/>
+            <input type="button" value="Anyline Voucher Codes" onclick="anyline.ocr.scanAnylineVoucherCodes()"/>
+        </p>
+        <hr>
+        <h2> Others </h2>
+        <p>
+            <input type="button" value="Barcode" onclick="anyline.barcode.scan()"/>
+            <br/>
+            <input type="button" value="MRZ of Passport or ID" onclick="anyline.mrz.scan()"/>
+            <br/>
+            <input type="button" value="Document" onclick="anyline.document.scan()"/>
+            <br/>
+        </p>
+    </details>
+
+
+    <hr>
+    <details id="details_results">
+        <summary class="summary1">
+            Results
+        </summary>
+        <p>
+        <div id="results">
+
+        </div>
+        </p>
+    </details>
+
+
+</div>
+
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/anyline.barcode.js"></script>
+<script type="text/javascript" src="js/anyline.energy.js"></script>
+<script type="text/javascript" src="js/anyline.mrz.js"></script>
+<script type="text/javascript" src="js/anyline.ocr.js"></script>
+<script type="text/javascript" src="js/anyline.document.js"></script>
+</body>
+
 </html>
